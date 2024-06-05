@@ -25,5 +25,12 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk
-      - run: flutter build appbundle
+      - run: flutter build apk --release
+      - run: flutter build appbundle --release
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+            appId: ${{secrets.FIREBASE_APP_ID}}
+            token: ${{secrets.FIREBASE_TOKEN}}
+            groups: tester_1
+            file: build/app/outputs/apk/release/app-release.apk
