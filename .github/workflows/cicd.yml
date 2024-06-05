@@ -2,7 +2,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - develop
+      - main
 
 jobs:
   flutter_test:
@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: "17"
-          distribution: 'temurin'
+          distribution: "temurin"
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-          flutter-version: '3.22.1'
+          flutter-version: "3.22.1"
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
