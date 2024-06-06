@@ -20,9 +20,8 @@ jobs:
         run: |
           git fetch -f origin --tags
           git log --pretty="format:%s" HEAD...latest-build > ./release_notes.txt
-          cat ./release_notes.txt
 
-      - run: git log --oneline | cat
+      - run: cat ./release_notes.txt
 
       - name: Set up JDK
         uses: actions/setup-java@v3
