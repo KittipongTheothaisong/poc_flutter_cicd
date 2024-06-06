@@ -62,7 +62,7 @@ jobs:
       - run: cat ./log.txt
 
       - name: Generate release notes
-        run: git log --pretty="format:%s" latest-build...${{ github.event.pull_request.head.sha }} > ./release_notes.txt
+        run: git log --pretty="format:%s" --merges latest-build...HEAD > ./release_notes.txt
 
       - name: Tag latest build
         run: |
