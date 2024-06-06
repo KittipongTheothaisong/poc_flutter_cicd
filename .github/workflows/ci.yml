@@ -22,8 +22,9 @@ jobs:
           git log --pretty="format:%s" latest-build...HEAD > ./release_notes.txt
           git tag > ./tags.txt
 
-      - run: cat ./release_notes.txt
+      - run: cat -n ./release_notes.txt
       - run: cat ./tags.txt
+      - run: git rev-list -n 1 latest-build
 
       - name: Set up JDK
         uses: actions/setup-java@v3
