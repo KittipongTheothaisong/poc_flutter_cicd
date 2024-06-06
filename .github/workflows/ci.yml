@@ -19,7 +19,8 @@ jobs:
       - name: Log changes
         run: |
           git fetch -f origin --tags
-          git log --pretty="format:%s" HEAD...latest-build | cat
+          git log --pretty="format:%s" HEAD...latest-build > ./release_notes.txt
+          cat ./release_notes.txt
 
       - run: git log --oneline | cat
 
