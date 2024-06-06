@@ -21,6 +21,8 @@ jobs:
           git fetch -f origin --tags
           git log --pretty="format:%s" HEAD...latest-build | cat
 
+      - run: git log --oneline
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
