@@ -27,7 +27,7 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.22.1
-      
+
       - name: Run Test
         run: |
           flutter pub get
@@ -49,15 +49,19 @@ jobs:
       - name: Push updated app version
         run: git push
 
-      - name: Generate release notes and update latest build tag
+      - name: Fetch tags
+        run: git fetch -f origin --tags
+
+      - name: Generate release notes
+        run: git log --pretty="format:%s" --merges head...latest-build > ./release_notes.txt
+
+      - name: Tag latest build
         run: |
-          git fetch -f origin --tags
-          git log --pretty="format:%s" --merges head...latest-build > ./release_notes.txt
           git tag -f latest-build
           git push -f origin latest-build
 
       - name: Build APK
-        run: | 
+        run: |
           flutter clean
           flutter pub get
           flutter build apk --release
