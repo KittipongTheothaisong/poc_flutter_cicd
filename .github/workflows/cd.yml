@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -29,12 +27,22 @@ jobs:
           channel: stable
           flutter-version: 3.22.1
       - run: flutter --version
+
+      - name: Get branch name
+        run: git rev-parse --abbrev-ref HEAD
+
+      - name: Bump version and push branch
+        run: |
+          flutter pub get
+          flutter pub run version
+          git add pubspec.yaml
+          git commit -m "bumped version to $(flutter pub run cider version)"
+
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
+
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:

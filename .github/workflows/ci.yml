@@ -11,21 +11,22 @@ jobs:
     name: CI
     runs-on: ubuntu-22.04
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: "11"
-          distribution: "temurin"
-      - run: java -version
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: 3.22.1
+      - uses: ./.github/actions/setup_environment.yml
+      # - name: Clone repository
+      #   uses: actions/checkout@v4
+      # - name: Get branch name
+      #   run: git rev-parse --abbrev-ref HEAD
+      # - name: Set up JDK
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     java-version: "11"
+      #     distribution: "temurin"
+      # - run: java -version
+      # - name: Set up Flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     channel: stable
+      #     flutter-version: 3.22.1
       - run: ls -la
       - run: pwd
       - run: flutter --version
