@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD | cat
+        run: git rev-parse --abbrev-ref HEAD
 
       - name: Log changes
         run: |
           git fetch -f origin --tags
           git log --pretty="format:%s" HEAD...latest-build | cat
 
-      - run: git log --oneline
+      - run: git log --oneline | cat
 
       - name: Set up JDK
         uses: actions/setup-java@v3
