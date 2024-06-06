@@ -31,10 +31,10 @@ jobs:
       - name: Bump version
         run: |
           flutter pub get
-          flutter pub run version
+          flutter pub run cider bump build
           git add pubspec.yaml
           git commit -m "bumped version to $(flutter pub run cider version)"
-      
+
       - name: Push updated app version
         run: git push
 
