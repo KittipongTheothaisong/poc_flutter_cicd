@@ -10,7 +10,7 @@ jobs:
     name: CI
     runs-on: ubuntu-22.04
     steps:
-      - name: Clone repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Get branch name
