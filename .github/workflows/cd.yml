@@ -15,28 +15,28 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: "11"
           distribution: "temurin"
-      - run: java -version
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.22.1
-      - run: flutter --version
 
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
-
-      - name: Bump version and push branch
+      - name: Bump version
         run: |
           flutter pub get
           flutter pub run version
           git add pubspec.yaml
           git commit -m "bumped version to $(flutter pub run cider version)"
+      
+      - name: Push updated app version
+        run: git push
 
       - run: flutter pub get
       - run: flutter analyze
