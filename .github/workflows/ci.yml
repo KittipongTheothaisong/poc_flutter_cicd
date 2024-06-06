@@ -19,7 +19,6 @@ jobs:
       - name: Log changes
         run: |
           git fetch -f origin --tags
-          git tag
           git log --pretty="format:%s" HEAD...latest-build
 
       - name: Set up JDK
