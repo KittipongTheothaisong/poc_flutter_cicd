@@ -58,6 +58,9 @@ jobs:
       - name: Generate release notes
         run: git log --pretty="format:%s" latest-build...${{ github.event.pull_request.head.sha }} > ./release_notes.txt
 
+      - run: git log --oneline > ./log.txt
+      - run: cat ./log.txt
+
       - name: Tag latest build
         run: |
           git tag -f latest-build
