@@ -13,9 +13,6 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
