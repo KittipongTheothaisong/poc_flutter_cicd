@@ -4,6 +4,7 @@ on:
   workflow_call:
 
 jobs:
+  runs-on: ubuntu-22.04
   setup:
     steps:
       - name: Set up JDK
