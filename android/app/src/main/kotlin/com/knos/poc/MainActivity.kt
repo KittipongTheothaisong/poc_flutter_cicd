@@ -1,4 +1,4 @@
-package com.example.poc_flutter_cicd
+package com.knos.poc
 
 import io.flutter.embedding.android.FlutterActivity
 
