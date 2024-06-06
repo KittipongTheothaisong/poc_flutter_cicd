@@ -27,6 +27,12 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.22.1
+      
+      - name: Run Test
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
 
       - name: Config git user
         run: |
@@ -43,10 +49,18 @@ jobs:
       - name: Push updated app version
         run: git push
 
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
-      - run: flutter build apk --release
+      - name: Generate release notes and update latest build tag
+        run: |
+          git fetch -f origin --tags
+          git log --pretty="format:%s" --merges head...latest-build > ./release_notes.txt
+          git tag -f latest-build
+          git push -f origin latest-build
+
+      - name: Build APK
+        run: | 
+          flutter clean
+          flutter pub get
+          flutter build apk --release
 
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -55,3 +69,4 @@ jobs:
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: tester_1
           file: build/app/outputs/apk/release/app-release.apk
+          releaseNotesFile: release_notes.txt
