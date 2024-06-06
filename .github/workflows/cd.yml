@@ -4,6 +4,7 @@ on:
   pull_request:
     types:
       - closed
+
     branches:
       - main
 
@@ -15,26 +16,34 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: "11"
           distribution: "temurin"
-      - run: java -version
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.22.1
-      - run: flutter --version
+
+      - name: Bump version
+        run: |
+          flutter pub get
+          flutter pub run cider bump build
+          git add pubspec.yaml
+          git commit -m "bumped version to $(flutter pub run cider version)"
+
+      - name: Push updated app version
+        run: git push
+
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
+
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
