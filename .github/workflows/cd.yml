@@ -56,7 +56,7 @@ jobs:
         run: git fetch -f origin --tags
 
       - name: Generate release notes
-        run: git log --pretty="format:%s" latest-build...head > ./release_notes.txt
+        run: git log --pretty="format:%s" latest-build...${{ github.event.pull_request.head.sha }} > ./release_notes.txt
 
       - name: Tag latest build
         run: |
