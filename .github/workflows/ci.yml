@@ -19,7 +19,7 @@ jobs:
       - name: Log changes
         run: |
           git fetch -f origin --tags
-          git log --pretty="format:%s" HEAD...latest-build
+          git log --pretty="format:%s" HEAD...latest-build | cat
 
       - name: Set up JDK
         uses: actions/setup-java@v3
