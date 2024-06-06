@@ -16,6 +16,9 @@ jobs:
       - name: Get branch name
         run: git rev-parse --abbrev-ref HEAD
 
+      - name: Log changes
+        run: git log --pretty="format:%s" HEAD...latest-build
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
