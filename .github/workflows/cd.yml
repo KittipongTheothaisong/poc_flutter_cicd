@@ -29,6 +29,11 @@ jobs:
           channel: stable
           flutter-version: 3.22.1
 
+      - name: Config git user
+        run: |
+          git config --global user.email "kittipong.t@bafs-id.co.th"
+          git config --global user.name "GitHub Actions"
+
       - name: Bump version
         run: |
           flutter pub get
