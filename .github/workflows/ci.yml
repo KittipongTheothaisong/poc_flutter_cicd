@@ -26,6 +26,8 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.22.1
+      - run: ls -la
+      - run: pwd
       - run: flutter --version
       - run: flutter pub get
       - run: flutter analyze
