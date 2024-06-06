@@ -17,7 +17,10 @@ jobs:
         run: git rev-parse --abbrev-ref HEAD
 
       - name: Log changes
-        run: git log --pretty="format:%s" HEAD...latest-build
+        run: |
+          git fetch -f origin --tags
+          git tag
+          git log --pretty="format:%s" HEAD...latest-build
 
       - name: Set up JDK
         uses: actions/setup-java@v3
