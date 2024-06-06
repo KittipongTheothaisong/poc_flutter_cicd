@@ -1,7 +1,6 @@
 name: CI
 
 on:
-  # workflow_call:
   pull_request:
     branches:
       - main
@@ -13,29 +12,23 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-        
-      - name: Setup vm environment
-        uses: ./.github/actions/setup_environment.yml
-      # - name: Clone repository
-      #   uses: actions/checkout@v4
-      # - name: Get branch name
-      #   run: git rev-parse --abbrev-ref HEAD
-      # - name: Set up JDK
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     java-version: "11"
-      #     distribution: "temurin"
-      # - run: java -version
-      # - name: Set up Flutter
-      #   uses: subosito/flutter-action@v2
-      #   with:
-      #     channel: stable
-      #     flutter-version: 3.22.1
-      - run: ls -la
-      - run: pwd
+
+      - name: Get branch name
+        run: git rev-parse --abbrev-ref HEAD
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "11"
+          distribution: "temurin"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.22.1
+
       - run: flutter --version
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - name: Get branch name
-        run: git rev-parse --abbrev-ref HEAD
