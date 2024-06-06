@@ -8,11 +8,13 @@ on:
 
 jobs:
   ci:
-    name: Run flutter test and analyze
+    name: CI
     runs-on: ubuntu-22.04
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+      - name: Get branch name
+        run: git rev-parse --abbrev-ref HEAD
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
