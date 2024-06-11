@@ -37,6 +37,7 @@ dependencies:
   change_app_package_name: ^1.2.0
   cider: ^0.2.7
   flutter_flavorizr: ^2.2.3
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/icons/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -110,3 +112,6 @@ flavorizr:
       android:
         applicationId: "com.knos.poc.uat"
         icon: "assets/icons/iris_logo.png"
+
+flutter_native_splash:
+  background_image: assets/images/splash_screen.png
