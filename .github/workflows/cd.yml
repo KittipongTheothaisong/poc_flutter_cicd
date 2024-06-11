@@ -51,8 +51,8 @@ jobs:
           echo "FILE_NAME: ${{ env.FILE_NAME }}"
           echo "FIREBASE_APP_ID: ${{ env.FIREBASE_APP_ID }}"
           echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
-          java --version"
-          flutter --version"
+          echo $(java --version)"
+          echo $(flutter --version)"
 
       - name: Run Test
         run: |
