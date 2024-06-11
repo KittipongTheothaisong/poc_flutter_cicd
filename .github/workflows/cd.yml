@@ -45,18 +45,20 @@ jobs:
           channel: stable
           flutter-version: 3.22.1
 
+      - name: Log info
+        run: |
+          echo "FLAVOR: ${{ env.FLAVOR }}"
+          echo "FILE_NAME: ${{ env.FILE_NAME }}"
+          echo "FIREBASE_APP_ID: ${{ env.FIREBASE_APP_ID }}"
+          echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo "Java version: $(java --version)"
+          echo "Flutter version: $(flutter --version)"
+
       - name: Run Test
         run: |
           flutter pub get
           flutter analyze
           flutter test
-
-      - name: Log info
-        run: |
-          echo "FLAVOR = ${{ env.FLAVOR }}"
-          echo "FILE_NAME = ${{ env.FILE_NAME }}"
-          echo "FIREBASE_APP_ID = ${{ env.FIREBASE_APP_ID }}"
-          echo "Current branch = $(git rev-parse --abbrev-ref HEAD)"
 
       - name: Bump version
         run: |
