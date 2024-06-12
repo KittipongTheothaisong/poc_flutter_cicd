@@ -12,7 +12,7 @@ jobs:
     # if: github.event.pull_request.merged == true
     name: CD
     runs-on: ubuntu-22.04
-    environment: dev
+    environment: ${{ github.ref_name }}
     steps:
       - run: echo ${{ vars.MY_NAME }}
       - name: Config git user
@@ -61,7 +61,7 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          flutter build apk --release --flavor ${{ vars.FLAVOR }} -t lib/${{ vars.FLAVOR }}
+          flutter build apk --release --flavor ${{ vars.FLAVOR }} -t lib/main_${{ vars.FLAVOR }}.dart
 
       - name: Upload to Firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
