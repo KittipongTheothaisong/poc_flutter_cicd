@@ -62,7 +62,7 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          flutter build apk --release --flavor ${{ vars.FLAVOR }} -t lib/main_${{ vars.FLAVOR }}.dart
+          flutter build apk --release --flavor ${{ vars.FLAVOR }} -t lib/main.dart
 
       - name: Upload to Firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
