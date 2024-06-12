@@ -12,9 +12,9 @@ jobs:
     # if: github.event.pull_request.merged == true
     name: CD
     runs-on: ubuntu-22.04
-    environment: ${{ github.ref_name }}
+    environment: ${{ github.base_ref }}
     steps:
-      - run: echo ${{ github.ref_name }}
+      - run: echo ${{ github.base_ref }}
       - run: echo ${{ vars.MY_NAME }}
       - name: Config git user
         run: |
