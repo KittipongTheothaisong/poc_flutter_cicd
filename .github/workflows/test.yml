@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on:
   pull_request:
@@ -12,8 +12,8 @@ on:
       - main
 
 jobs:
-  ci:
-    name: CI
+  test:
+    name: test
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout

@@ -59,8 +59,8 @@ jobs:
           echo "FIREBASE_APP_ID: ${{ env.FIREBASE_APP_ID }}"
           echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
           echo $(java --version)
-          flutter --version
           echo ${{ secrets[env.CREDENTIAL_TARGET] }}
+          flutter --version
 
       - name: Run Test
         run: |
