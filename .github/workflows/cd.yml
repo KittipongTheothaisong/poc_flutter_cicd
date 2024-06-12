@@ -1,7 +1,7 @@
 name: CD
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:
@@ -9,25 +9,11 @@ on:
 
 jobs:
   cd:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     name: CD
     runs-on: ubuntu-22.04
+    environment: ${{ github.ref_name }}
     steps:
-      - name: Set up env
-        run: |
-          if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
-            echo "FLAVOR=dev" >> $GITHUB_ENV
-            echo "FILE_NAME=main.dart" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/uat" ]; then
-            echo "FLAVOR=uat" >> $GITHUB_ENV
-            echo "FILE_NAME=main.dart" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "FLAVOR=dev" >> $GITHUB_ENV
-            echo "FILE_NAME=main.dart" >> $GITHUB_ENV
-            echo "FIREBASE_APP_ID=${{ vars.FIREBASE_APP_ID_DEV }}" >> $GITHUB_ENV
-            echo "CREDENTIAL_TARGET=CREDENTIAL_FILE_CONTENT_dev" >> $GITHUB_ENV
-          fi
-
       - name: Config git user
         run: |
           git config --global user.email "kittipong.t@bafs-id.co.th"
@@ -52,15 +38,6 @@ jobs:
           channel: stable
           flutter-version: 3.22.1
 
-      - name: Log info
-        run: |
-          echo "FLAVOR: ${{ env.FLAVOR }}"
-          echo "FILE_NAME: ${{ env.FILE_NAME }}"
-          echo "FIREBASE_APP_ID: ${{ env.FIREBASE_APP_ID }}"
-          echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
-          echo $(java --version)
-          flutter --version
-
       - name: Run Test
         run: |
           flutter pub get
@@ -83,13 +60,13 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          flutter build apk --release --flavor ${{ env.FLAVOR }} -t lib/${{ env.FILE_NAME }}
+          flutter build apk --release --flavor ${{ env.FLAVOR }} -t lib/${{ env.FLAVOR }}
 
       - name: Upload to Firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ env.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets[env.CREDENTIAL_TARGET] }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT_DEV }}
           groups: tester_1
           file: build/app/outputs/apk/${{ env.FLAVOR }}/release/app-${{ env.FLAVOR }}-release.apk
           releaseNotesFile: release_notes.txt
