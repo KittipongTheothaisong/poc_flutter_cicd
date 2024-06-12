@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-22.04
     environment: dev
     steps:
-      - run: echo ${{ vars.FLAVOR }}
+      - run: echo ${{ vars.MY_NAME }}
       - name: Config git user
         run: |
           git config --global user.email "kittipong.t@bafs-id.co.th"
