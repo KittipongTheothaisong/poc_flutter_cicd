@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-22.04
     environment: ${{ github.ref_name }}
     steps:
-      - run: echo ${{ env.main.FLAVOR }}
+      - run: echo $GITHUB_ENV
       - name: Config git user
         run: |
           git config --global user.email "kittipong.t@bafs-id.co.th"
