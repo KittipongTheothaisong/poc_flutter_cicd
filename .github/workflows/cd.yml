@@ -7,18 +7,14 @@ on:
     branches:
       - main
 
-env:
-  - main
-
 jobs:
   cd:
     # if: github.event.pull_request.merged == true
     name: CD
     runs-on: ubuntu-22.04
-    env: main
-    environment: ${{ github.ref_name }}
+    environment: dev
     steps:
-      - run: echo ${{ env.FLAVOR }}
+      - run: echo ${{ vars.FLAVOR }}
       - name: Config git user
         run: |
           git config --global user.email "kittipong.t@bafs-id.co.th"
