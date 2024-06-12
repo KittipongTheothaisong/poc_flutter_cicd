@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-22.04
     environment: ${{ github.ref_name }}
     steps:
+      - run: echo ${{ github.ref_name }}
       - run: echo ${{ vars.MY_NAME }}
       - name: Config git user
         run: |
