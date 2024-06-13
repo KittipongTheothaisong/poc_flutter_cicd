@@ -12,7 +12,7 @@ jobs:
     # if: github.event.pull_request.merged == true
     name: CD
     runs-on: ubuntu-22.04
-    environment: ${{ github.base_ref == 'main' && 'prod' || github.base_ref }}
+    environment: dev
     steps:
       - run: echo ${{ github.base_ref }}
       - run: echo ${{ vars.MY_NAME }}
