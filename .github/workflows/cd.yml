@@ -27,10 +27,7 @@ jobs:
           ref: ${{ github.base_ref }}
           fetch-depth: 0
           fetch-tags: true
-
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOYMENT_SSH_KEY }}
+          ssh-key: ${{ secrets.DEPLOYMENT_SSH_KEY }}
 
       - name: Set up JDK
         uses: actions/setup-java@v3
