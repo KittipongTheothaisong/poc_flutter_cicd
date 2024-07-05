@@ -71,6 +71,6 @@ jobs:
         run: git push
 
       - name: Update latest build tag
-        run: |git
+        run: |
           git tag -f latest-build
           git push -f origin latest-build
