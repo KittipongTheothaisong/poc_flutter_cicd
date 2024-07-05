@@ -23,5 +23,3 @@ jobs:
           num-octocats: "1234"
 
       - uses: ./.github/workflows/reusable-workflow.yml
-        with:
-          num-octocats: "1234"
