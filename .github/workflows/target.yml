@@ -1,0 +1,18 @@
+on:
+  workflow_call:
+    inputs:
+      num-octocats:
+        description: "Number of Octocats"
+        required: true
+        type: string
+        default: "1150"
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - run: echo ${{ github.event.inputs.num-octocats }}
