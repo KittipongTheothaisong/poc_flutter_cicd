@@ -19,8 +19,8 @@ jobs:
       - name: Github ref
         run: echo ${{ github.ref }}
 
-      - uses: ./.github/workflows/target.yml
+      - uses: ./.github/workflows/target
         with:
           num-octocats: "1234"
 
-      - uses: ./.github/workflows/target.yml
+      - uses: ./.github/workflows/target
