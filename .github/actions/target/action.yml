@@ -1,13 +1,6 @@
 name: traget-action
 
-inputs:
-  num-octocats:
-    description: "Number of Octocats"
-    required: true
-    type: string
-    default: "1150"
-
 runs:
   using: "composite"
   steps:
-    - run: echo "Hello traget-action input is ${{ inputs.num-octocats }}"
+    - run: echo "Hello traget-action"

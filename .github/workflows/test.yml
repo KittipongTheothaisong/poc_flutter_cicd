@@ -20,7 +20,3 @@ jobs:
         run: echo ${{ github.ref }}
 
       - uses: ./.github/actions/target
-        with:
-          num-octocats: "1234"
-
-      - uses: ./.github/actions/target
