@@ -17,6 +17,3 @@ jobs:
 
       - name: Github ref
         run: echo ${{ github.ref }}
-
-      - name: Dump context
-        run: ${{ toJSON(github) }}
