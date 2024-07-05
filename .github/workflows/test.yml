@@ -18,6 +18,8 @@ jobs:
 
       - name: Github ref
         run: echo ${{ github.ref }}
+
+      - run: exist 1
   call-reusable-1:
     uses: ./.github/workflows/reusable.yml
     with:
