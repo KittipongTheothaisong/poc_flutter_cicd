@@ -18,5 +18,3 @@ jobs:
 
       - name: Github ref
         run: echo ${{ github.ref }}
-
-      - uses: ./.github/actions/target
