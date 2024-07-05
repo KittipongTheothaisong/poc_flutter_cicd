@@ -18,3 +18,7 @@ jobs:
 
       - name: Github ref
         run: echo ${{ github.ref }}
+  call-reusable-1:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      your-name: "Alice"
