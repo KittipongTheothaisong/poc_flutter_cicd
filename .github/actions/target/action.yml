@@ -1,19 +1,13 @@
-on:
-  workflow_dispatch:
-  workflow_call:
-    inputs:
-      num-octocats:
-        description: "Number of Octocats"
-        required: true
-        type: string
-        default: "1150"
+name: traget-action
 
-jobs:
-  test:
-    name: test
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+inputs:
+  num-octocats:
+    description: "Number of Octocats"
+    required: true
+    type: string
+    default: "1150"
 
-      - run: echo ${{ github.event.inputs.num-octocats }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Hello traget-action input is ${{ inputs.num-octocats }}"
