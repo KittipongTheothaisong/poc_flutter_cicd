@@ -27,9 +27,11 @@ runs:
       uses: actions/checkout@v4
 
     - run: git rev-parse --abbrev-ref HEAD
+      shell: bash
 
     - name: Github ref
       run: echo ${{ github.ref }}
+      shell: bash
 
     - name: Set up JDK
       uses: actions/setup-java@v3
