@@ -19,6 +19,9 @@ jobs:
       - name: Github ref
         run: echo ${{ github.ref }}
 
+      - name: composite
+        uses: ./.github/actions/target
+
       - run: exist 1
   call-reusable-1:
     needs: [test]
