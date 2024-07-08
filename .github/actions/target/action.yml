@@ -2,23 +2,22 @@ name: traget-action
 
 runs:
   using: "composite"
-  env:
-    JAVA_VERSION: '${{ vars.JAVA_VERSION }}'
-    FLUTTER_VERSION: '${{ vars.FLUTTER_VERSION }}'
   steps:
-    - run: echo "Hello traget-action"
+    - name: Greating
+      shell: bash
+      run: echo "Hello traget-action"
 
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: $JAVA_VERSION
+        java-version: "${{ vars.JAVA_VERSION }}"
         distribution: "temurin"
 
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
         channel: stable
-        flutter-version: $FLUTTER_VERSION
+        flutter-version: "${{ vars.FLUTTER_VERSION }}"
 
     - name: Run Test
       shell: bash
