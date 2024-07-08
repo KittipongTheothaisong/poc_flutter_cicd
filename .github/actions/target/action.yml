@@ -1,0 +1,57 @@
+name: traget-action
+
+inputs:
+  who-to-greet:
+    description: "Who to greet"
+    required: true
+    default: "World"
+
+  java-version:
+    description: "Java version"
+    required: true
+
+  flutter-version:
+    description: "Flutter version"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Greating
+      shell: bash
+      run: echo "Hello $INPUT_WHO_TO_GREET."
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - run: git rev-parse --abbrev-ref HEAD
+      shell: bash
+
+    - name: Github ref
+      run: echo ${{ github.ref }}
+      shell: bash
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: "temurin"
+      env:
+        JAVA_VERSION: ${{ inputs.java-version }}
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version: ${{ inputs.flutter-version }}
+      env:
+        FLUTTER_VERSION: ${{ inputs.flutter-version }}
+
+    - name: Run Test
+      shell: bash
+      run: |
+        flutter pub get
+        flutter analyze
+        flutter test
