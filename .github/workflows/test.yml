@@ -30,6 +30,11 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           flutter-version: ${{ env.FLUTTER_VERSION }}
 
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
       - run: exist 1
   call-reusable-1:
     needs: [test]
