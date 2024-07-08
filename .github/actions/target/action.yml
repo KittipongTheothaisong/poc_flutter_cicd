@@ -4,3 +4,23 @@ runs:
   using: "composite"
   steps:
     - run: echo "Hello traget-action"
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: ${{ vars.JAVA_VERSION }}
+        distribution: "temurin"
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version: ${{ vars.FLUTTER_VERSION }}
+
+    - run: flutter --version
+
+    - name: Run Test
+      run: |
+        flutter pub get
+        flutter analyze
+        flutter test

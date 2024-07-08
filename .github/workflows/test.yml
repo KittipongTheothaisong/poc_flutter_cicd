@@ -21,6 +21,7 @@ jobs:
 
       - run: exist 1
   call-reusable-1:
+    if: success()
     uses: ./.github/workflows/reusable.yml
     with:
       your-name: "Alice"
