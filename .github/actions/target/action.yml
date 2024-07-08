@@ -26,7 +26,7 @@ runs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: $JAVA_VERSION
+        java-version: "$JAVA_VERSION"
         distribution: "temurin"
       env:
         JAVA_VERSION: ${{ inputs.java-version }}
@@ -35,7 +35,7 @@ runs:
       uses: subosito/flutter-action@v2
       with:
         channel: stable
-        flutter-version: $FLUTTER_VERSION
+        flutter-version: "$FLUTTER_VERSION"
       env:
         FLUTTER_VERSION: ${{ inputs.flutter-version }}
 
