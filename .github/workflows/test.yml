@@ -15,14 +15,6 @@ jobs:
     name: test
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - run: git rev-parse --abbrev-ref HEAD
-
-      - name: Github ref
-        run: echo ${{ github.ref }}
-
       - name: composite
         uses: ./.github/actions/target
         with:
