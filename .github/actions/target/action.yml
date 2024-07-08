@@ -15,21 +15,25 @@ runs:
       env:
         INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
 
-    # - name: Set up JDK
-    #   uses: actions/setup-java@v3
-    #   with:
-    #     java-version: $JAVA_VERSION
-    #     distribution: "temurin"
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: $JAVA_VERSION
+        distribution: "temurin"
+      env:
+        JAVA_VERSION: ${{ vars.JAVA_VERSION }}
 
-    # - name: Set up Flutter
-    #   uses: subosito/flutter-action@v2
-    #   with:
-    #     channel: stable
-    #     flutter-version: $FLUTTER_VERSION
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version: $FLUTTER_VERSION
+      env:
+        FLUTTER_VERSION: ${{ vars.FLUTTER_VERSION }}
 
-    # - name: Run Test
-    #   shell: bash
-    #   run: |
-    #     flutter pub get
-    #     flutter analyze
-    #     flutter test
+    - name: Run Test
+      shell: bash
+      run: |
+        flutter pub get
+        flutter analyze
+        flutter test
