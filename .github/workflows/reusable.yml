@@ -12,3 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello, ${{ inputs.your-name }}"
+      - run: exit 1
