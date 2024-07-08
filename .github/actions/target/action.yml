@@ -6,6 +6,14 @@ inputs:
     required: true
     default: "World"
 
+  java-version:
+    description: "Java version"
+    required: true
+
+  flutter-version:
+    description: "Flutter version"
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -21,7 +29,7 @@ runs:
         java-version: $JAVA_VERSION
         distribution: "temurin"
       env:
-        JAVA_VERSION: ${{ vars.JAVA_VERSION }}
+        JAVA_VERSION: ${{ inputs.java-version }}
 
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
@@ -29,7 +37,7 @@ runs:
         channel: stable
         flutter-version: $FLUTTER_VERSION
       env:
-        FLUTTER_VERSION: ${{ vars.FLUTTER_VERSION }}
+        FLUTTER_VERSION: ${{ inputs.flutter-version }}
 
     - name: Run Test
       shell: bash
