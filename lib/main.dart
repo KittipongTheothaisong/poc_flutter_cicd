@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poc_flutter_cicd/counter_widget.dart';
 import 'package:poc_flutter_cicd/sample_circular_page.dart';
 import 'package:poc_flutter_cicd/sample_linear_page.dart';
 
@@ -42,6 +43,7 @@ class _SamplePageState extends State<SamplePage> {
               child: Text("Linear Library"),
               onPressed: () => _openPage(SampleLinearPage()),
             ),
+            CounterWidget(),
           ],
         ),
       ),
