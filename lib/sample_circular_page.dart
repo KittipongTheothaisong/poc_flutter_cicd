@@ -12,7 +12,7 @@ class _SampleCircularPageState extends State<SampleCircularPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Circular Percent Indicators"),
+        title: Text("Circular Percent Indcators"),
       ),
       body: Center(
         child: ListView(
@@ -26,9 +26,6 @@ class _SampleCircularPageState extends State<SampleCircularPage> {
               reverse: false,
               arcType: ArcType.FULL_REVERSED,
               startAngle: 0.0,
-              animateFromLastPercent: true,
-              circularStrokeCap: CircularStrokeCap.round,
-              backgroundColor: Colors.green,
               linearGradient: const LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
