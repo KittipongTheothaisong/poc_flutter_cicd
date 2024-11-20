@@ -38,6 +38,7 @@ dependencies:
   cider: ^0.2.7
   flutter_flavorizr: ^2.2.3
   flutter_native_splash: ^2.4.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
